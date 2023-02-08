@@ -1,0 +1,371 @@
+//basic c# console print
+namespace cshopbasics
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("mani");
+        }
+    }
+}
+
+//when press run button window open and suddenly close(console.writeline() given given window wait for user input )
+// pres ctrl+f5 window open and show
+
+
+// basic add function
+
+namespace cshopbasics
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("mani");
+           int x, y,tot;
+            x = 10;
+            y = 20;
+            tot = x + y;
+            Console. WriteLine(tot);
+        }
+    }
+}
+
+
+// 2 methods of diplay type
+Console. WriteLine("total:"+tot);
+Console.WriteLine($"total:{tot}");
+
+// simple intrest calculation
+
+ int p, n, r, si;
+            Console.Write("enter the value of p:" );
+            p=int.Parse(Console.ReadLine());           //int.parse convert string to integer
+            Console.Write("enter the value of n:");
+            n = int.Parse(Console.ReadLine());
+            Console.Write("enter the value of r:");
+            r= int.Parse(Console.ReadLine());
+            si = (p * n * r) / 100;
+            Console.WriteLine(si);
+
+//r= Convert.Tolnt32(Console.ReadLine());
+// r= float.Parse(Console.ReadLine());
+
+
+//if else loop
+
+
+            int jan, feb, mar, tot, avg;
+            Console.Write("enter the value of jan:" );
+            jan=int.Parse(Console.ReadLine());
+            Console.Write("enter the value of feb:");
+            feb = int.Parse(Console.ReadLine());
+            Console.Write("enter the value of mar:");
+            mar= int.Parse(Console.ReadLine());
+            tot = jan + feb + mar;
+            avg = tot / 3;
+            Console.WriteLine($"total:{tot}");
+            Console.WriteLine($"average:{avg}");
+            int inc;
+            if (avg > 25)
+            {
+                 inc = tot * 20 / 100;
+                Console.WriteLine($"incentive:{inc}");
+            }
+            else
+            {
+                inc = 0;
+            }
+
+//output
+
+enter the value of jan:78
+enter the value of feb:67
+enter the value of mar:56
+total:201
+average:67
+incentive:40
+
+//nestrd if and else if
+
+ int jan, feb, mar, tot, avg;
+            Console.Write("enter the value of jan:" );
+            jan=int.Parse(Console.ReadLine());
+            Console.Write("enter the value of feb:");
+            feb = int.Parse(Console.ReadLine());
+            Console.Write("enter the value of mar:");
+            mar= int.Parse(Console.ReadLine());
+            tot = jan + feb + mar;
+            avg = tot / 3;
+            Console.WriteLine($"total:{tot}");
+            Console.WriteLine($"average:{avg}");
+            int inc;
+            if (jan>=20 && feb>=20 && mar >= 20)
+            {
+                if (avg > 25)
+                {
+                    inc = tot * 25 / 100;
+                    Console.WriteLine($"incentive:{inc}");
+                }
+                else if(avg>50)
+                {
+                    inc = tot * 50/ 100;
+                    Console.WriteLine($"incentive:{inc}");
+                }
+                else if (avg > 75)
+                {
+                    inc = tot * 75 / 100;
+                    Console.WriteLine($"incentive:{inc}");
+                }
+                else
+                {
+                    inc = 0;
+                }
+            
+
+            }
+            else
+            {
+                inc = 0;
+            }
+
+//output
+enter the value of jan:67
+enter the value of feb:69
+enter the value of mar:89
+total:225
+average:75
+incentive:56
+
+// switch case
+
+
+            int pr, cr, unit, rate,amt;
+            string type;
+            Console.Write("enter the value of cr:" );
+            cr=int.Parse(Console.ReadLine());
+            Console.Write("enter the value of pr:");
+            pr= int.Parse(Console.ReadLine());
+            Console.Write("enter the type:");
+            type=Console.ReadLine();
+            unit=Math.Abs(cr-pr);
+            switch(type)
+            {
+                case "D" :
+                    rate = 2;
+                    break;
+                case "C":
+                    rate= 4;
+                    break;
+                case "B":
+                    rate = 6;
+                    break;
+                case "A":
+                    rate = 8;
+                    break;
+                default:
+                    Console.WriteLine("invalied input");
+                    rate= 0;
+                    break;
+            }
+
+            amt = unit * rate;
+            Console.WriteLine($"bill amound:{amt}");
+
+
+//output
+
+enter the value of cr:6454
+enter the value of pr:5456
+enter the type:D
+bill amound:1996
+
+//for loop
+
+for(int i = 0; i <= 20; i++)
+            {
+                Console.WriteLine(i+"x7="+(i*7));
+            }  
+
+
+//output
+
+
+0x7=0
+1x7=7
+2x7=14
+3x7=21
+4x7=28
+5x7=35
+6x7=42
+7x7=49
+8x7=56
+9x7=63
+10x7=70
+11x7=77
+12x7=84
+13x7=91
+14x7=98
+15x7=105
+16x7=112
+17x7=119
+18x7=126
+19x7=133
+20x7=140
+
+//while loop // risain multiplication interview question
+
+ int x,y;
+            Console.Write("enter the value of x:");
+            x = int.Parse(Console.ReadLine());
+            Console.Write("enter the value of y:");
+            y = int.Parse(Console.ReadLine());
+            int a = x;
+            int b= y;
+            int tot = 0;
+            while (x>0)
+            {
+                
+                if (x % 2 != 0)
+                {
+                    tot+= y;
+                }
+                x=x/2; y=y*2;
+            }
+            Console.WriteLine($"product of x {a} and y {b} is {tot}");
+
+//output
+
+enter the value of x:23
+enter the value of y:21
+product of x 23 and y 21 is 483
+
+//array  // array is the referance (or) object type //collection of homoginues iteam
+
+ int[] sales = new int[3];
+            string[] months = {"jan", "feb", "mar" };
+            for(int i=0;i<sales.Length;i++)
+            {
+                Console.Write($"enter sales for {months[i]}: ");
+                sales[i] = int.Parse(Console.ReadLine());
+            }
+            int tot = 0;
+            for(int i=0;i< sales.Length;i++)
+            {
+                Console.WriteLine($"{months[i]} \t {sales[i]}");
+                tot += sales[i];
+               
+            }
+            Console.WriteLine($"total: {tot}");
+
+//output
+
+enter sales for jan: 78
+enter sales for feb: 89
+enter sales for mar: 90
+jan      78
+feb      89
+mar      90
+total: 257
+
+
+// multi diomanantional array 
+
+int[,] sales = new int[3,3];
+            string[] months = {"jan", "feb", "mar" };
+            for(int i=0;i<sales.GetLength(0);i++)
+            {
+                Console.WriteLine($"enter sales for salesman {i+1}: ");
+                for (int j = 0; j < sales.GetLength(1); j++)
+                {
+                    Console.Write($"enter sales for {months[j]}:");
+                    sales[i,j] = int.Parse(Console.ReadLine());
+                }
+            }
+            for (int i = 0; i < sales.GetLength(0); i++)
+            {
+                Console.Write($"salesman {i + 1}\t");
+                int tot = 0;
+                for (int j = 0; j < sales.GetLength(1); j++)
+                {
+                    Console.Write($"{sales[i,j]}\t");
+                    tot += sales[i,j];
+                }
+
+                Console.WriteLine(tot);
+            }
+
+
+// output
+
+enter sales for salesman 1:
+enter sales for jan:78
+enter sales for feb:98
+enter sales for mar:67
+enter sales for salesman 2:
+enter sales for jan:56
+enter sales for feb:45
+enter sales for mar:34
+enter sales for salesman 3:
+enter sales for jan:56
+enter sales for feb:78
+enter sales for mar:98
+salesman 1      78      98      67      243
+salesman 2      56      45      34      135
+salesman 3      56      78      98      232
+
+
+//jaked array (this is alsosame as multi diamantional arry only different b/w edgess of array not same save the memory)
+
+ int[][] player= new int[3][];
+            for (int i = 0; i < player.GetLength(0); i++)
+            {
+                Console.WriteLine($"enter score for player {i + 1}: ");
+                Console.WriteLine($"enter number of matches played: ");
+                int n=int.Parse( Console.ReadLine() );
+                player[i] = new int[n];
+                for (int j = 0; j < player[i].Length; j++)
+                {
+                    Console.Write($"enter score for match {j+1}:");
+                    player[i][j] = int.Parse(Console.ReadLine());
+                }
+            }
+            for (int i = 0; i < player.GetLength(0); i++)
+            {
+                Console.Write($"player {i + 1}\t");
+                int tot = 0;
+                for (int j = 0; j < player[i].Length; j++)
+                {
+                    Console.Write($"{player[i][j]}\t");
+               
+                    tot += player[i][j];
+                }
+
+                Console.WriteLine(tot);
+            }
+
+//output
+
+enter score for player 1:
+enter number of matches played:
+5
+enter score for match 1:56
+enter score for match 2:78
+enter score for match 3:98
+enter score for match 4:67
+enter score for match 5:90
+enter score for player 2:
+enter number of matches played:
+2
+enter score for match 1:190
+enter score for match 2:68
+enter score for player 3:
+enter number of matches played:
+3
+enter score for match 1:678
+enter score for match 2:56
+enter score for match 3:76
+player 1        56      78      98      67      90      389
+player 2        190     68      258
+player 3        678     56      76      810

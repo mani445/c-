@@ -1,0 +1,21 @@
+//generic function
+
+ public static T Sum<T>(T a,T b) where T : IComparable<T>,IConvertible
+        {
+            dynamic x = a;
+            dynamic y = b;
+            return x +y;
+        }
+        static void Main(string[] args)
+        {
+            Console.WriteLine(Sum<int>(1, 5));
+            Console.WriteLine(Sum<float>(1.0f, 5));
+            Console.WriteLine(Sum<long>(1, 5));
+            Console.WriteLine(Sum<string>("Mani", "Kandan")); 
+
+//output
+
+6
+6
+6
+ManiKandan

@@ -1,0 +1,791 @@
+// opps concepts
+
+
+C# OOP
+C# Classes/Objects
+C# Class Members
+C# Constructors
+C# Access Modifiers
+C# Properties
+C# Inheritance
+C# Polymorphism
+C# Abstraction
+C# Interface
+C# Enums
+C# Files
+C# Exceptions
+
+modurality
+reasualibity
+data encabulation /hiding
+abstraction/ need only data
+polymorpisham
+class is a blue print of an object
+
+//class/object
+
+class     objects
+
+Fruit      Apple
+           Banana
+           Mango
+
+
+//Constructors
+
+a special type of procedure
+constructor not a function
+it has no return type 
+Constructors created by class name must only
+it is only call at the time time of object creating
+
+this ---> it is the key word
+implict opject reference
+
+
+// class creation
+
+//mani class
+
+ student s = new student();    // create object for sub class
+            s.age = 13;
+            s.name= "mani";
+            s.id= 1;
+            student t= new student();
+            t.age = 14;
+            t.name = "rani";
+            t.id = 2;
+
+            Console.WriteLine(t.name+"\t"+t.id+"\t" +t.age);
+
+// student class
+
+ public int id;              // when given public only acces another cless otherwise do not acess the class
+        public string name;
+        public int age;
+
+//output
+rani    2       14
+
+
+// empty Constructors and parametarized Constructors
+
+//main class
+
+ student s = new student();
+            s.SetData();  //object creation
+            s.GetData(); // object calling
+            student t= new student(2,"rani",15);
+           
+
+            Console.WriteLine(t);  // over ride vale output
+
+//student class
+
+ public int id;
+        public string name;
+        public int age;
+
+        public student()// empty Constructors
+        {
+        }
+
+        public student(int id, string name, int age)// para Constructors
+        {
+            this.id = id;
+            this.name = name;
+            this.age = age;
+        }
+        public void SetData()     //object creation
+        {
+            Console.WriteLine("enter your name:");
+            name= Console.ReadLine();
+            Console.WriteLine("enter your roll:");
+            id =int.Parse( Console.ReadLine());
+            Console.WriteLine("enter your age:");
+            age =int.Parse( Console.ReadLine());
+        }
+        public void GetData()   // object calling
+        {
+            Console.WriteLine("name :" + name);
+            Console.WriteLine("id:" + id);
+            Console.WriteLine("age :" + age);
+        }
+        public override string ToString() //over ride method 
+        {
+            return $"{name}\t{id}\t{age}";
+        }
+
+
+//output
+
+enter your name:
+
+mani
+enter your roll:
+2
+enter your age:
+34
+name :mani
+id:2
+age :34
+rani    2       15
+
+
+
+//Inheritance
+Derived Class (child) - the class that inherits from another class
+Base Class (parent) - the class being inherited from
+
+//main program
+
+school_student s = new school_student();
+            s.SetData();
+            s.GetData();
+            Console.WriteLine(s);
+
+//student class
+
+ internal class student   //Base Class
+{
+public int id;
+        public string name;
+        public int age;
+
+        public student()
+        {
+        }
+
+        public student(int id, string name, int age)
+        {
+            this.id = id;
+            this.name = name;
+            this.age = age;
+        }
+        public virtual void SetData()            // pulic only access any location //producted acess dervided class only //private only that class     
+        {
+            Console.Write("enter your name:");
+            name= Console.ReadLine();
+            Console.Write("enter your roll:");
+            id =int.Parse( Console.ReadLine());
+            Console.Write("enter your age:");
+            age =int.Parse( Console.ReadLine());
+        }
+        public virtual void GetData()          // virutal keyword use only in base class (not use child class override not accepted)
+        {
+            Console.WriteLine("name :" + name);
+            Console.WriteLine("id:" + id);
+            Console.WriteLine("age :" + age);
+        }
+        public override string ToString()
+        {
+            return $"{name}\t{id}\t{age}";
+        }
+
+//school student
+
+  internal class school_student:student  //Inheritance  //Derived Class
+    {
+ public int std;
+        public string section;
+
+        public school_student():base() //constractor not inherited every class have a own constractor
+        {
+         
+        }
+
+        public school_student(int id, string name, int age,int std, string section)
+        {
+            this.std = std;
+            this.section = section;
+        }
+
+        public override void SetData()     // override keyword use to add the child class data
+        {
+            base.SetData();                   // base class acces do not given only derived clss object access
+            Console.Write("enter your std:");
+            std =int.Parse(Console.ReadLine());
+            Console.Write("enter your section:");
+            section = Console.ReadLine();
+           
+        }
+        public override void GetData()
+        {
+            base.GetData();               // base class acces do not given only derived clss object access
+            Console.WriteLine("std :" + std);
+            Console.WriteLine("section:" + section);
+           
+        }
+        public override string ToString()
+        {
+            return base.ToString() +"\t"+std+"\t"+section;
+        }
+
+//output
+
+enter your name:mani
+enter your roll:1
+enter your age:15
+enter your std:10
+enter your section:b
+name :mani
+id:1
+age :15
+std :10
+section:b
+mani    1       15      10      b
+
+
+// multilevel inheritance //multiple inheritance does not posible in c# and java //exx a,b two parant c is child not possible
+//ex---> a->b->c->d....
+// hirarical inheritance // one parant class and n number of child class
+
+//main class
+
+hrsecstudent s = new hrsecstudent(); //student s = new hrsecstudent();//it is also work(dynamic method byinding)(run time polymorpishim)
+            s.SetData();
+            s.GetData();
+            Console.WriteLine(s);
+
+// student class and school_student class same above program
+//hrsecstudent class
+
+  internal class hrsecstudent : school_student
+    {
+        public string group;
+
+        public hrsecstudent()
+        {
+
+        }
+        public hrsecstudent(int id, string name, int age, int std, string section,string group)
+        {
+        this.group = group;
+        }
+        public override void SetData()
+        {
+            base.SetData();
+            Console.Write("enter your group:");
+            group= Console.ReadLine();
+        }
+        public override void GetData()
+        {
+            base.GetData();
+            Console.WriteLine("group :" + group);
+        }
+        public override string ToString()
+        {
+            return base.ToString() + "\t" + group;
+        }
+
+
+//output
+
+enter your name:mani
+enter your roll:12
+enter your age:15
+enter your std:10
+enter your section:b
+enter your group:cs
+name :mani
+id:12
+age :15
+std :10
+section:b
+group :cs
+mani    12      15      10      b       cs
+
+
+//polymorpishim 
+1.run time poly
+*at the time of inheritance base class to get child object referance
+*method over riding is run time poly(same method over ride by child class)
+(exx  student s = new hrsecstudent();)
+// example progm for inheratance prog
+
+
+2.compile time poly 
+*constractor call at different parameter and argument
+*over loading is compile time poly (same method name with different arrgument in same class)
+
+//compile time polymorpishim
+// method over riding  // consractor called different arrgument is method over loading
+
+   public class employee
+    {
+      
+        public int roll;
+        public string name;
+        public int score;
+
+        public employee()  // constractor with no argument
+        {
+        }
+        public  void SetData()       // empy constractor data get from user
+        {
+            Console.Write("enter your name:");
+            name = Console.ReadLine();
+            Console.Write("enter your roll:");
+            roll = int.Parse(Console.ReadLine());
+            Console.Write("enter your score:");
+            score = int.Parse(Console.ReadLine());
+        }
+ public employee(int roll)          // constarctor with 1 argument
+        {
+            this.roll = roll;
+        }
+
+        public employee(int roll, string name, int score)  //constactor with 3 argument
+        {
+            this.roll = roll;
+            this.name = name;
+            this.score = score;
+           
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            employee s= new employee(1,"mani",35);
+            employee s1 = new employee(2);
+            employee s2 = new employee();
+            s2.SetData();   //empty constractor data assign
+        
+        }
+
+//abstract class-->have a abstract methods-->can not be instantiated
+upper level-->more generic-->inheritance chances more
+lower level-->more spefic-->inheritance chances low
+
+base class-->abract methods only -->what are the function includes
+child class--> define abstract method-->all abstract method will defie is must
+
+in base class have 1 abract method the class will change abstract method
+abstract method define in public only(public only inheritance posiable)
+only the abstract method are find in child class ,other method write in child class do not show in object call
+
+//interface
+absrect class and interface have more relation
+in a abstract class all method are abstract method called interface
+in interface all are public
+
+// main class
+
+myInterface a= new Class1();
+            a.SetData();
+            a.GetData();
+
+//interface class
+
+
+  internal interface myInterface   // interface creation
+    {
+        void GetData();
+        void SetData();
+        void PutData();
+
+    }
+
+//class1
+
+  internal class Class1:myInterface // all interface method in inherited clss 
+    {
+        public int id;
+        public string name;
+        public int age;
+
+        public void GetData()
+        {
+            Console.WriteLine("name :" + name);
+            Console.WriteLine("id:" + id);
+            Console.WriteLine("age :" + age);
+        }
+
+        public void PutData()    // when no data given this type method initialize
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetData()
+        {
+            Console.Write("enter your name:");
+            name = Console.ReadLine();
+            Console.Write("enter your roll:");
+            id = int.Parse(Console.ReadLine());
+            Console.Write("enter your age:");
+            age = int.Parse(Console.ReadLine());
+        }
+
+//class2
+
+  internal class Class2:myInterface
+    {
+        public int id;
+        public string name;
+        public int age;
+
+        public void GetData()
+        {
+            Console.WriteLine("name :" + name);
+            Console.WriteLine("id:" + id);
+            Console.WriteLine("age :" + age);
+        }
+
+        public void PutData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetData()
+        {
+            Console.Write("enter your name:");
+            name = Console.ReadLine();
+            Console.Write("enter your roll:");
+            id = int.Parse(Console.ReadLine());
+            Console.Write("enter your age:");
+            age = int.Parse(Console.ReadLine());
+        }
+
+
+//output
+
+enter your name:mani
+enter your roll:12
+enter your age:16
+name :mani
+id:12
+age :16
+
+
+//static member vs instant member
+
+static keyword used method or constractor or variable all are static members
+(static member are saperate memory and copy one time )
+other all are instant member
+(every object cration time create a memory)
+
+//ststic member 
+
+     public class std
+    {
+        static public int totalstudent;    // ststic member creation
+        public int roll;
+        public string name;
+        public int score;
+
+        public std(int roll, string name, int score)
+        {
+            this.roll = roll;
+            this.name = name;
+            this.score = score;
+            totalstudent++ ;
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            std s= new std(1,"mani",35);
+            std s1 = new std(2, "tharani", 45);
+            Console.WriteLine(std.totalstudent);     // static member call class name only
+        
+        }                                              // not call s. or s1.totalstudent
+
+
+//output
+
+2
+
+//hidding/over riding
+over riding method we will show in inheritance
+
+the difference between hiding and over riding
+
+when parant class virtual key word child class over ride key word 
+parnent class neme to call child class all mehod are diplay
+
+studend s= new hrsecstudent();// display all parant and child class methods
+
+when hidding 
+
+hrsecstudent s= new hrsecstudent();// display the method of child class
+studend s= new hrsecstudent();// display the method of parrent //child class method is hidding
+
+//properties // this is the kind of encapulation
+//class data consield acess user defiened
+
+ public class circle
+    {
+        int R;
+        public int r
+        {
+            get { return R; }  // get set method is the property 
+            set
+            {
+                if (value > 0)
+                    R = value;
+                else R = 1;
+            }
+        }
+
+        private float pi = 3.14f;
+        public void area()
+        {
+           
+        Console.WriteLine(pi * r * r);
+
+        }
+
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            circle c = new circle() { r = -5 };// get set method value assign
+            c.area();
+        }
+
+//structures--> value type -->almost similer to class 
+object is a reference type -->class 
+difference b/w class have create without arrgument constractor 
+but structures do not have create it
+object over head are high so memory management system we go for struct
+small level a group of data given to function we use struct
+
+//
+
+ struct employee          // struct creating
+    {
+        public int ID;
+        public string Name;
+        public int salary;
+
+        public employee(int iD, string name, int salary) // struct do not create empty consructor 
+        {                                                 //because it is default assign
+            ID = iD;
+            Name = name;
+            this.salary = salary;
+        }
+        public void display()
+        {
+            Console.WriteLine(ID+ "\t " + Name+"\t"+salary);
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            employee e= new employee();
+            employee e1;                 // new key not used to create object
+            e.ID = 10;
+            e.Name= "mani";
+            e.salary = 34256;
+            e.display();
+            e1 = e;
+            e1.ID= 20;               // class referance type so diplay both id is 20
+            e1.display();
+
+         
+        }
+    }
+
+//output
+
+10       mani   34256
+20       mani   34256    // when class referance type so diplay id both are 20
+
+//file handling
+
+using cshopbasics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.NetworkInformation;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;            // this id using for file hamdling io
+
+
+namespace cshopbasics
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            FileStream fs = new FileStream(@"C:\Users\dell\Desktop\book.txt", FileMode.OpenOrCreate); //file create
+            StreamWriter w = new StreamWriter(fs); //streamwriter to write the file
+            string ans = "y";
+            while (ans == "y")
+            {
+                Console.Write("enter book id:");
+                string id=Console.ReadLine();
+                Console.Write("enter book name:");
+                string name= Console.ReadLine();
+                Console.Write("enter book author:");
+                string author= Console.ReadLine();
+                string line1=$"{id},{name},{author}";     
+                w.WriteLine(line1);                    //write a enter values
+                Console.Write("do u want to add more y/n?");
+                ans = Console.ReadLine();
+
+            }
+            w.Close();   //last open first close // close commant is must
+            fs.Close();  //first open last cloose
+            FileStream fs1 = new FileStream(@"C:\Users\dell\Desktop\book.txt", FileMode.Open);//file read
+            StreamReader r = new StreamReader(fs1);
+            string line =r.ReadLine();
+            while(line!= null)
+            {
+                string[] cols = line.Split(',');       // split in to tabular form
+                Console.WriteLine("id    :"+cols[0]);
+                Console.WriteLine("name  :"+cols[1]);
+                Console.WriteLine("author:"+cols[2]);
+                line= r.ReadLine();
+            }
+            r.Close();
+            fs1.Close();
+        }
+    }
+}
+
+// output  //text create file in desktop (book)
+
+enter book id:1
+enter book name:c#
+enter book author:mani
+do u want to add more y/n?y
+enter book id:2
+enter book name:c#basic
+enter book author:alex
+do u want to add more y/n?y
+enter book id:3
+enter book name:c#opps
+enter book author:viji
+do u want to add more y/n?n
+id    :1
+name  :c#
+author:mani
+id    :2
+name  :c#basic
+author:alex
+id    :3
+name  :c#opps
+author:viji
+
+
+//exception
+difference between exception and error is error prodeced by user 
+exx --> logical error , bugs ,syntex error
+exception is same program run in same switation completely run but some time 
+input wrong, some file taken in hdd read,
+in the exception all error do not find out. some will be rectified. at the time 
+system error do not understand by user so some meaning error message given by developr and stop the prog
+ex -->atm out of service
+
+// io exception, sql exception (every package and module have exception individualy)
+
+
+// nested exception
+ when try block inside another try catch block is called nested exception 
+when nested exception 1st try insilize for arthmitic error inner try insilize for index error 
+at the time inner try also have arthmitic error shown outer try block any exception are there catch block exception shown
+this is the benifit for nested exception
+
+//user difined exception also passible in c# create the exception class
+
+//exception program
+
+ int x, y, z;
+            int[] arr = { 12, 13, 14 };
+            int n = -1;
+            Console.Write("enter the value of x:");
+            x=int.Parse(Console.ReadLine());
+            Console.Write("enter the value of y:");
+            y =int.Parse(Console.ReadLine());
+            try                                      //try block(1 try block multiple catch block used)
+            {
+                z = x / y;
+                Console.WriteLine(arr[5]);
+            }
+            catch (DivideByZeroException e)           // catch block  1
+            {
+                Console.WriteLine("y value can not be zero");
+                while (y == 0)                                   //exception handling
+                {
+                    Console.Write("enter non zero  value of y:");
+                    y = int.Parse(Console.ReadLine());
+                }
+              
+                
+            }
+            catch(IndexOutOfRangeException e1)         // catch block  2
+            {
+                
+                
+                while (n < 0 ||n > arr.Length)
+                {
+                    Console.Write("enter proper index");
+                    n=int.Parse(Console.ReadLine());
+
+                }
+               
+            }
+            z= x/ y;
+            Console.WriteLine("result:" + z);
+            Console.WriteLine(arr[n]);
+        }
+    }
+
+//output
+
+enter the value of x:4
+enter the value of y:2
+enter proper index2
+result:2
+14
+
+// system error shown
+
+Unhandled Exception: System.DivideByZeroException: Attempted to divide by zero.
+   at cshopbasics.Program.Main(String[] args) in C:\Users\dell\Desktop\c#\cshopbasics\cshopbasics\Program.cs:line 32
+Press any key to continue . . .
+
+Unhandled Exception: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at cshopbasics.Program.Main(String[] args) in C:\Users\dell\Desktop\c#\cshopbasics\cshopbasics\Program.cs:line 26
+Press any key to continue . . .
+
+Unhandled Exception: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at cshopbasics.Program.Main(String[] args) in C:\Users\dell\Desktop\c#\cshopbasics\cshopbasics\Program.cs:line 23
+Press any key to continue . . .
+
+
+// enum(enumaration)
+
+priority of complint (sivierity of problem) // enum is more flexiable to use// using for colour coding//readablity also increase
+
+ public enum days { sunday=1, monday, tuesday, wednewsday, thursday, friday, saturday };  //enum creating// index start 1 also posible
+        static void Main(string[] args)
+        {
+            days d = days.friday;
+            Console.WriteLine((int)d);  // diplay the index//only d in console display value
+
+//delicates
+
+
+ public delegate int compute(int a, int b); //create delicate function
+
+        static void Main(string[] args)
+        {
+            compute f = new compute(add);
+            Console.WriteLine(f(12, 13));
+        }
+        public static int add(int a, int b)
+        {
+            return a + b;
+        }
+
